@@ -19,8 +19,9 @@ test(_A, [], []) ->
 test(Func, [Param | Next], [Head | Tail]) ->
     Res = Func(Param),
     if Res == Head -> 
-        io:format("ok");
+        io:format("Value: ~p~n", [Res]);
     true -> 
+        io:format("Expected: ~p, Got: ~p",[Head, Res]),
         error("Assertion Failed")
     end,
     test(Func, Next, Tail).
@@ -31,8 +32,12 @@ run_all() ->
     io:format("Exercicio 1 ~n"),
 
     io:format("a) ~n"),
+    test(fun a1/1, lists:seq(1, C), [3, 5, 7, 9]),
 
     io:format("b) ~n"),
-    test(fun a1/1, lists:seq(1, C), [3, 5,7,9]),
+
+    io:format("c) ~n"),
+    test(fun c1/1, lists:seq(1, C), [2, 4, 16, 65536]), %% lembrar de mudar no papel
+
 
     b1(4).
