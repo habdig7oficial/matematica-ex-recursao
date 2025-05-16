@@ -13,6 +13,29 @@ c1(0) -> 1;
 c1(N) -> 
     math:pow(2, c1(N - 1)).
 
+d1(0) -> 1;
+d1(N) -> 
+    math:pow(d1(N - 1), 2) + d1(N - 1) + 1.
+
+a2(0) -> 0;
+a2(N) -> 
+    6 + a2(N - 1).
+
+b2(0) -> 1;
+b2(N) -> 
+    2 + b2(N - 1).
+
+c2(0) -> 1;
+c2(N) -> 
+    10 * c2(N - 1).
+
+d2(0) -> 5;
+d2(N) -> 
+    d2(N - 1).
+
+e2(0) -> -2;
+e2(N) -> 
+    4 + e2(N - 1).
 
 test(_A, [], []) ->
     ok;
@@ -32,12 +55,33 @@ run_all() ->
     io:format("Exercicio 1 ~n"),
 
     io:format("a) ~n"),
-    test(fun a1/1, lists:seq(1, C), [3, 5, 7, 9]),
+    test(fun a1/1, lists:seq(0, C), [1, 3, 5, 7, 9]),
 
     io:format("b) ~n"),
+    test(fun b1/1, lists:seq(0, C), [1, 3, 9, 27, 81]),
 
     io:format("c) ~n"),
-    test(fun c1/1, lists:seq(1, C), [2, 4, 16, 65536]), %% lembrar de mudar no papel
+    test(fun c1/1, lists:seq(0, C), [1, 2, 4, 16, 65536]),
+
+    io:format("d) ~n"),
+    test(fun d1/1, lists:seq(0, C), [1, 3, 13, 183, 33673.0]),
+
+    io:format("~n~nExercicio 2 ~n"),
+
+    io:format("a) ~n"),
+    test(fun a2/1, lists:seq(0, C), [0, 6, 12, 18, 24]),
+
+    io:format("b) ~n"),
+    test(fun b2/1, lists:seq(0, C), [1, 3, 5, 7, 9]),
+
+    io:format("c) ~n"),
+    test(fun c2/1, lists:seq(0, C), [1, 10, 100, 1000, 10000]),
+
+    io:format("d) ~n"),
+    test(fun d2/1, lists:seq(0, C), [5, 5, 5, 5, 5]),
+
+    io:format("e) ~n"),
+    test(fun e2/1, lists:seq(0, C), [-2, 2, 6, 10, 14])
 
 
-    b1(4).
+.
