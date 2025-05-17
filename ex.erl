@@ -49,6 +49,14 @@ h2(0) -> 0;
 h2(N) -> 
    (2 * N) - 1 + h2(N - 1).
 
+p3(0) -> 1;
+p3(N) -> 
+    5 * p3(N - 1).
+
+p4(0) -> 0;
+p4(N) -> 
+    p4(N - 1) + 7.
+
 test(_A, [], []) ->
     ok;
 test(Func, [Param | Next], [Head | Tail]) ->
@@ -78,6 +86,7 @@ run_all() ->
     io:format("d) ~n"),
     test(fun d1/1, lists:seq(0, C), [1, 3, 13, 183, 33673.0]),
 
+
     io:format("~n~nExercicio 2 ~n"),
 
     io:format("a) ~n"),
@@ -102,7 +111,13 @@ run_all() ->
     test(fun g2/1, lists:seq(0, C), [0, 2, 6, 12, 20]),
 
     io:format("h) ~n"),
-    test(fun h2/1, lists:seq(0, C), [0, 1, 4, 9, 16])
+    test(fun h2/1, lists:seq(0, C), [0, 1, 4, 9, 16]),
+
+    io:format("~n~nExercicio 3 ~n"),
+    test(fun p3/1, lists:seq(0, C), [1, 5, 25, 125, 625]),
+
+    io:format("~n~nExercicio 4 ~n"),
+    test(fun p4/1, lists:seq(0, C), [0, 7, 14, 21, 28])
 
 
 .
