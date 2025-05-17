@@ -118,6 +118,4 @@ run_all() ->
 
     io:format("~n~nExercicio 4 ~n"),
     test(fun p4/1, lists:seq(0, C), [0, 7, 14, 21, 28])
-
-
 .
