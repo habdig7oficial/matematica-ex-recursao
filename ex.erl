@@ -37,6 +37,18 @@ e2(0) -> -2;
 e2(N) -> 
     4 + e2(N - 1).
 
+f2(0) -> 0;
+f2(N) -> 
+    (f2(N - 1) + (N - 1)) rem 2 * 2.
+
+g2(0) -> 0;
+g2(N) -> 
+    2 * N + g2(N - 1).
+
+h2(0) -> 0;
+h2(N) -> 
+   (2 * N) - 1 + h2(N - 1).
+
 test(_A, [], []) ->
     ok;
 test(Func, [Param | Next], [Head | Tail]) ->
@@ -81,7 +93,16 @@ run_all() ->
     test(fun d2/1, lists:seq(0, C), [5, 5, 5, 5, 5]),
 
     io:format("e) ~n"),
-    test(fun e2/1, lists:seq(0, C), [-2, 2, 6, 10, 14])
+    test(fun e2/1, lists:seq(0, C), [-2, 2, 6, 10, 14]),
+
+    io:format("f) ~n"),
+    test(fun f2/1, lists:seq(0, C), [0, 0, 2, 0, 2]),
+
+    io:format("g) ~n"),
+    test(fun g2/1, lists:seq(0, C), [0, 2, 6, 12, 20]),
+
+    io:format("h) ~n"),
+    test(fun h2/1, lists:seq(0, C), [0, 1, 4, 9, 16])
 
 
 .
